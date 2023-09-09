@@ -1,0 +1,21 @@
+{% extends "oscar/checkout/checkout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Checkout" %} | {{ block.super }}
+{% endblock %}
+
+{% block checkout_title %}{% trans "Proceed to Order" %}{% endblock %}
+
+{% block order_contents %}{% endblock %}
+
+{% block shipping_address %}
+<div class="col-sm-12">
+    <div class="card card-body bg-light">
+        <p>{% blocktranslate %}Please email <a class="text-muted" href="email:hmnegciosdiversos@gmail.com">hmnegciosdiversos@gmail.com</a> or call <a class="text-muted" href="tel:+18493722414">+1 849-372-2414</a> to place your order. Thank you for shopping with us!{% endblocktranslate %}</p>
+    </div>
+</div>
+{% endblock shipping_address %}
+
+{% block shipping_method %}{% endblock %}
+{% block payment_method %}{% endblock %}

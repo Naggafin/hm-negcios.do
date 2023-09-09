@@ -1,0 +1,64 @@
+{% extends "oscar/layout.html" %}
+{% load static i18n %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'oscar/css/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
+{% endblock %}
+
+{% block layout %}
+	{# Top-horizontal bar with account, notifictions, dashboard links #}
+	{% include "oscar/partials/nav_accounts.html" %}
+
+	{# Site logo/title, mini-basket, browse dropdown and searchbox #}
+	<header class="header container">
+		<div>
+			<div class="d-flex justify-content-center my-4 mx-auto">
+				{% include "oscar/partials/brand.html" %}
+			</div>
+			<div class="row justify-content-between">
+				<small class="col text-nowrap">&#9993; {% translate 'Email' %}: <a class="text-muted" href="email:hmnegciosdiversos@gmail.com">hmnegciosdiversos@gmail.com</a></small>
+				<span class="col text-center text-nowrap d-none d-md-inline">
+					<span class="mx-1">&#127465;&#127476;</span>
+					<span class="mx-1">&#127474;&#127485;</span>
+					<span class="mx-1">&#127477;&#127462;</span>
+					<span class="mx-1">&#127468;&#127481;</span>
+					<span class="mx-1">&#127469;&#127475;</span>
+					<span class="mx-1">&#127477;&#127479;</span>
+					<span class="mx-1">&#127464;&#127479;</span>
+				</span>
+				<small class="col text-right">&#128222; {% translate 'Phone' %}: <a class="text-muted" href="tel:+18493722414">+1 849-372-2414</a></small>
+			</div>
+		</div>
+		{% block navigation %}
+			{% include "oscar/partials/nav_primary.html" %}
+		{% endblock %}
+	</header>
+
+	{# Main content of page - other layout templates may override this block #}
+	{% block content_wrapper %}
+		<div class="container page">
+			<div class="page_inner">
+				<div class="d-flex justify-content-between">
+					{% block breadcrumbs %}{% endblock %}
+					{% block mini_basket %}{% include "oscar/partials/mini_basket.html" %}{% endblock %}
+				</div>
+				{% block header %}
+					<div class="page-header">
+						<h1>{% block headertext %}{% endblock %}</h1>
+					</div>
+				{% endblock %}
+				{% include "oscar/partials/alert_messages.html" %}
+				{% block subnavigation %}{% endblock %}
+				<div class="content">
+					{% block subheader %}{% endblock subheader %}
+
+					{# Div exists for AJAX updates to entire content section #}
+					<div id="content_inner">{% block content %}{% endblock %}</div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+
+	{% include "oscar/partials/footer.html" %}
+{% endblock %}

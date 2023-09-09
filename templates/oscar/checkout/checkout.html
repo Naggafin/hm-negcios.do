@@ -1,0 +1,48 @@
+{% extends "oscar/checkout/layout.html" %}
+{% load currency_filters %}
+{% load i18n %}
+{% load image_tags %}
+{% load purchase_info_tags %}
+
+{% block title %}
+    {% trans "Checkout" %} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <div class="row shipping-payment">
+        {% block shipping_address %}
+            <div class="col-sm-6">
+                <div class="sub-header">
+                    <h2>{% trans "Proceed to Order" %}</h2>
+                </div>
+                <div class="card card-body bg-light card card-body bg-light-info">
+                	<p>{% blocktranslate %}Please email <a class="text-muted" href="email:hmnegciosdiversos@gmail.com">hmnegciosdiversos@gmail.com</a> or call <a class="text-muted" href="tel:+18493722414">+1 849-372-2414</a> to place your order. Thank you for shopping with us!{% endblocktranslate %}</p>
+                </div>
+            </div>
+        {% endblock shipping_address %}
+
+        {# You will almost certainly want to override this block to provide a payment summary #}
+        {% block payment_method %}
+        {% endblock payment_method %}
+    </div>
+
+    {% block order_contents %}
+    {% endblock order_contents %}
+
+    {% block shipping_method %}
+    {% endblock shipping_method %}
+
+    {% block payment_details %}
+    {% endblock payment_details %}
+
+    {% block place_order %}
+    {% endblock place_order %}
+
+{% endblock content %}
